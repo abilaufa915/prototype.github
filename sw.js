@@ -1,5 +1,5 @@
 /* DeadlineGuard Service Worker — offline shell + Web Push */
-const CACHE_NAME = 'deadlineguard-shell-v2';
+const CACHE_NAME = 'deadlineguard-shell-v4-dark';
 const APP_SHELL = new URL('./index.html', self.registration.scope).href;
 const ASSETS = [
   APP_SHELL,
