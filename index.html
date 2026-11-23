@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#2563eb" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="application-name" content="DeadlineGuard" />
   <meta name="description" content="DeadlineGuard membantu mencatat, mengurutkan, dan mengingatkan tenggat tugas kuliah." />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="DeadlineGuard" />
   <link rel="manifest" href="./manifest.json" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <link id="app-favicon" rel="icon" type="image/png" href="./icons/icon-192.png" />
-  <title>DeadlineGuard — Aplikasi Prioritas Tugas Kuliah</title>
+  <title>DeadlineGuard — Prioritas Tugas Kuliah</title>
+  <meta name="dg-release" content="2.0.0-stabilization" />
 
   <!-- Memuat Google Font 'Inter' untuk tipografi yang bersih dan modern -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -97,6 +100,55 @@
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
       }
+    }
+
+    /* DeadlineGuard refresh: cleaner hierarchy, softer surfaces, better mobile ergonomics */
+    :root { color-scheme: dark; --dg-ink:#e5eaf5; --dg-blue:#6d8cff; --dg-indigo:#8878ff; }
+    body { background:radial-gradient(ellipse at 8% 0%, rgba(59,130,246,.13), transparent 34rem), #0b1020; color:var(--dg-ink); }
+    header { background:rgba(15,23,42,.92) !important; backdrop-filter:blur(14px); border-color:#26334b !important; }
+    main > section, main section[aria-label], main .bg-white { border-color:#29364e !important; }
+    main > section[aria-label="Kontrol Notifikasi Smartphone"] { box-shadow:0 18px 42px rgba(0,0,0,.28); background:linear-gradient(115deg,#1d4ed8 0%,#3730a3 54%,#4c1d95 100%) !important; }
+    .shadow-sm, .shadow-md { box-shadow:0 8px 24px rgba(0,0,0,.22) !important; }
+
+    /* Dark theme surfaces and readable contrast */
+    [class~="bg-white"], [class~="bg-white/95"] { background-color:#151f32 !important; }
+    [class~="bg-slate-50"], [class~="bg-slate-50/60"], [class~="bg-slate-50/70"] { background-color:#101a2b !important; }
+    [class~="bg-slate-100"], [class~="bg-slate-200"], [class~="bg-slate-200/70"], [class~="bg-slate-200/80"] { background-color:#202c41 !important; }
+    [class~="text-slate-900"], [class~="text-slate-800"], [class~="text-slate-700"] { color:#e7edf8 !important; }
+    [class~="text-slate-600"], [class~="text-slate-500"] { color:#a8b5ca !important; }
+    [class~="text-slate-400"] { color:#8291aa !important; }
+    [class~="border-slate-100"], [class~="border-slate-200"], [class~="border-slate-200/90"], [class~="border-slate-300"] { border-color:#2b3952 !important; }
+    [class~="bg-blue-50"] { background-color:#172b50 !important; }
+    [class~="bg-indigo-50"] { background-color:#29234f !important; }
+    [class~="bg-emerald-50"] { background-color:#12372f !important; }
+    [class~="bg-rose-50"] { background-color:#421f30 !important; }
+    [class~="text-blue-700"], [class~="text-blue-600"] { color:#8eb2ff !important; }
+    [class~="text-indigo-700"], [class~="text-indigo-600"] { color:#b0a4ff !important; }
+    [class~="text-emerald-800"], [class~="text-emerald-600"] { color:#6ee7b7 !important; }
+    [class~="text-rose-800"], [class~="text-rose-700"], [class~="text-rose-600"], [class~="text-rose-500"] { color:#fda4af !important; }
+    [class~="text-amber-800"] { color:#fcd34d !important; }
+    [class~="border-blue-200"], [class~="border-indigo-100"] { border-color:#34558a !important; }
+    [class~="border-rose-200"] { border-color:#713348 !important; }
+    [class~="border-emerald-500"] { border-color:#168568 !important; }
+    input, select, textarea { background-color:#111c2e; color:#e7edf8; border-color:#35445e; color-scheme:dark; }
+    input::placeholder, textarea::placeholder { color:#8291aa; }
+    select option { background:#111c2e; color:#e7edf8; }
+    button[class~="bg-white"] { background-color:#1b2940 !important; color:#dbe6f7 !important; border-color:#35445e !important; }
+    #mobile-push-banner > div { background:rgba(21,31,50,.97) !important; border-color:#35445e !important; }
+    #push-banner-title { color:#f1f5f9 !important; }
+    #push-banner-body { color:#b8c5d8 !important; }
+    ::selection { background:#315ee8; color:white; }
+
+    button { min-height:40px; }
+    input, select, textarea { min-height:42px; }
+    #task-list > * { border-radius:18px; }
+    @media (max-width:640px) {
+      main { padding-top:1rem !important; padding-bottom:calc(5.5rem + env(safe-area-inset-bottom)) !important; }
+      header > div { padding-top:.8rem !important; padding-bottom:.8rem !important; }
+      #live-clock { font-size:11px; }
+      #btn-add-samples, #btn-clear-all, #btn-export-data, #btn-import-data { flex:1 1 calc(50% - .5rem); justify-content:center; }
+      main > section[aria-label="Ringkasan Statistik Tugas"] { gap:.5rem !important; }
+      main > section[aria-label="Ringkasan Statistik Tugas"] > div { padding:.75rem !important; min-width:0; }
     }
   </style>
 </head>
@@ -206,6 +258,14 @@
             <span>Isi Data Contoh</span>
           </button>
 
+          <button type="button" id="btn-export-data" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-slate-50 transition border border-slate-200" title="Unduh cadangan tugas dalam format JSON">
+            <span aria-hidden="true">↓</span><span>Backup</span>
+          </button>
+          <button type="button" id="btn-import-data" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-slate-50 transition border border-slate-200" title="Pulihkan tugas dari file JSON">
+            <span aria-hidden="true">↑</span><span>Restore</span>
+          </button>
+          <input id="backup-file-input" type="file" accept="application/json,.json" class="hidden" />
+
           <!-- Tombol Utilitas: Hapus Semua Data -->
           <button
             type="button"
@@ -250,7 +310,7 @@
               </span>
             </div>
             <p class="text-xs sm:text-sm text-blue-100 mt-0.5">
-              Pengingat tenggat saat aplikasi aktif. Push saat aplikasi ditutup tersedia setelah server push diatur dan aplikasi dipasang ke HP.
+              Pengingat lokal diperiksa saat aplikasi terbuka. Push saat aplikasi ditutup memerlukan backend Web Push terpisah.
             </p>
           </div>
         </div>
@@ -286,7 +346,7 @@
 
       </div>
       <p class="mt-3 text-[11px] sm:text-xs leading-relaxed text-blue-100/90">
-        Catatan: suara dan getaran notifikasi sistem mengikuti pengaturan HP. Pengingat ketika aplikasi ditutup memerlukan konfigurasi server push (tersedia di paket proyek).
+        Catatan: suara/getaran mengikuti pengaturan HP. Pengingat saat aplikasi ditutup belum aktif sampai backend Web Push dikonfigurasi.
       </p>
     </section>
 
@@ -669,7 +729,7 @@
     let audioContext = null;
     let soundEnabled = localStorage.getItem('deadlineguard_sound_enabled') !== 'false';
     const INSTALL_ID_KEY = 'deadlineguard_installation_id_v1';
-    const API_BASE = new URL('api/', new URL('./', window.location.href)).toString().replace(/\/$/, '');
+    const API_BASE = String(window.DEADLINEGUARD_API_BASE || new URL('api/', new URL('./', window.location.href)).toString()).replace(/\/$/, '');
 
     // ==================== PROGRESSIVE WEB APP (PWA) ====================
 
@@ -1002,26 +1062,29 @@
       let hasChanges = false;
 
       for (const task of tasks) {
-        if (task.status === 'Selesai' || task.notified) continue;
-
+        if (task.status === 'Selesai') continue;
         const deadlineMs = new Date(task.deadline).getTime();
         if (!Number.isFinite(deadlineMs)) continue;
-        const hoursRemaining = (deadlineMs - nowMs) / (1000 * 60 * 60);
+        const hoursRemaining = (deadlineMs - nowMs) / 3600000;
+        const stages = [
+          { key: 'H-72', threshold: 72, label: '3 hari lagi' },
+          { key: 'H-24', threshold: 24, label: '1 hari lagi' },
+          { key: 'H-3', threshold: 3, label: '3 jam lagi' },
+          { key: 'H-1', threshold: 1, label: '1 jam lagi' },
+          { key: 'OVERDUE', threshold: 0, label: 'sudah melewati tenggat' }
+        ];
+        if (!Array.isArray(task.notifiedStages)) task.notifiedStages = [];
+        const stage = [...stages].reverse().find((item) => hoursRemaining <= item.threshold);
+        if (!stage || task.notifiedStages.includes(stage.key)) continue;
 
-        if (hoursRemaining < 24) {
-          task.notified = true;
-          hasChanges = true;
-          const message = hoursRemaining <= 0
-            ? `Tugas "${task.title}" (${task.course}) telah melewati tenggat waktu.`
-            : `Tugas "${task.title}" (${task.course}) tersisa kurang dari 24 jam.`;
-
-          triggerSmartphoneNotification(
-            'DeadlineGuard: Tugas Mendesak!',
-            message,
-            `deadlineguard-task-${task.id}-${task.deadline}`
-          );
-          break;
-        }
+        task.notifiedStages.push(stage.key);
+        hasChanges = true;
+        const message = `Tugas "${task.title}" (${task.course}) ${stage.label}.`;
+        triggerSmartphoneNotification(
+          stage.key === 'OVERDUE' ? 'DeadlineGuard: Tenggat Terlewat' : `DeadlineGuard: Pengingat ${stage.key}`,
+          message,
+          `deadlineguard-${task.id}-${task.deadline}-${stage.key}`
+        );
       }
 
       if (hasChanges) saveTasksToStorage();
@@ -1167,7 +1230,8 @@
                   status: ['Belum Mulai', 'Dikerjakan', 'Selesai'].includes(item.status)
                     ? item.status : 'Belum Mulai',
                   difficulty: [1, 2, 3].includes(Number(item.difficulty)) ? Number(item.difficulty) : 1,
-                  notified: Boolean(item.notified)
+                  notified: Boolean(item.notified),
+                  notifiedStages: Array.isArray(item.notifiedStages) ? item.notifiedStages.filter(x => ['H-72','H-24','H-3','H-1','OVERDUE'].includes(x)) : []
                 }))
             : [];
         } else {
@@ -1687,6 +1751,55 @@
     /**
      * Mencegah injeksi HTML (XSS) pada input teks pengguna.
      */
+    function exportTasksBackup() {
+      const payload = { app: 'DeadlineGuard', schemaVersion: 1, exportedAt: new Date().toISOString(), tasks };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `deadlineguard-backup-${new Date().toISOString().slice(0,10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      showToast('Cadangan tugas berhasil dibuat.', 'success');
+    }
+
+    async function importTasksBackup(file) {
+      if (!file) return;
+      try {
+        const raw = await file.text();
+        const parsed = JSON.parse(raw);
+        const incoming = Array.isArray(parsed) ? parsed : parsed?.tasks;
+        if (!Array.isArray(incoming)) throw new Error('Format file tidak dikenali.');
+        const valid = incoming.filter((item) => item && typeof item === 'object' &&
+          typeof item.title === 'string' && item.title.trim() &&
+          typeof item.course === 'string' && item.course.trim() &&
+          typeof item.deadline === 'string' && Number.isFinite(new Date(item.deadline).getTime())
+        ).map((item) => ({
+          id: String(item.id || `restored-${Date.now()}-${Math.random().toString(36).slice(2)}`),
+          title: item.title.trim().slice(0, 160),
+          course: item.course.trim().slice(0, 120),
+          deadline: item.deadline,
+          difficulty: [1,2,3].includes(Number(item.difficulty)) ? Number(item.difficulty) : 2,
+          notes: typeof item.notes === 'string' ? item.notes.slice(0, 2000) : '',
+          status: ['Belum Mulai','Dikerjakan','Selesai'].includes(item.status) ? item.status : 'Belum Mulai',
+          notified: Boolean(item.notified),
+          notifiedStages: Array.isArray(item.notifiedStages) ? item.notifiedStages.filter(x => ['H-72','H-24','H-3','H-1','OVERDUE'].includes(x)) : [],
+          createdAt: Number(item.createdAt) || Date.now()
+        }));
+        if (!valid.length && incoming.length) throw new Error('Tidak ada tugas valid di dalam file.');
+        openConfirmModal('Pulihkan Cadangan?', `Data saat ini akan diganti dengan ${valid.length} tugas dari file cadangan.`, () => {
+          tasks = valid;
+          saveTasksToStorage();
+          renderApp();
+          showToast(`${valid.length} tugas berhasil dipulihkan.`, 'success');
+        });
+      } catch (error) {
+        showToast(error.message || 'File cadangan tidak dapat dibaca.', 'error');
+      }
+    }
+
     function escapeHtml(str) {
       return String(str)
         .replace(/&/g, '&amp;')
@@ -1807,6 +1920,7 @@
           notes,
           status: 'Belum Mulai',
           notified: false,
+          notifiedStages: [],
           createdAt: Date.now()
         };
 
@@ -1824,6 +1938,13 @@
 
       // 3. Tombol Isi Data Contoh (Header, Formulir & Empty State)
       document.getElementById('btn-add-samples').addEventListener('click', addDemoSampleTasks);
+      document.getElementById('btn-export-data')?.addEventListener('click', exportTasksBackup);
+      const backupInput = document.getElementById('backup-file-input');
+      document.getElementById('btn-import-data')?.addEventListener('click', () => backupInput?.click());
+      backupInput?.addEventListener('change', async (event) => {
+        await importTasksBackup(event.target.files?.[0]);
+        event.target.value = '';
+      });
       const formSampleBtn = document.getElementById('btn-form-sample');
       if (formSampleBtn) formSampleBtn.addEventListener('click', addDemoSampleTasks);
       document.getElementById('btn-empty-sample').addEventListener('click', addDemoSampleTasks);
@@ -1906,6 +2027,19 @@
           if (soundEnabled) unlockNotificationAudio();
         });
       }
+
+      window.addEventListener('storage', (event) => {
+        if (event.key === STORAGE_KEY && event.newValue) {
+          try {
+            const otherTabTasks = JSON.parse(event.newValue);
+            if (Array.isArray(otherTabTasks)) {
+              tasks = otherTabTasks;
+              renderApp();
+              showToast('Data diperbarui dari tab lain.', 'info');
+            }
+          } catch (error) { console.warn('Sinkronisasi antar-tab gagal:', error); }
+        }
+      });
 
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) {
